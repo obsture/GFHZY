@@ -1,722 +1,420 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>李白《侠客行》 - 飘渺动画</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
+        
         body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Ma Shan Zheng', cursive;
+            min-height: 100vh;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
+            overflow: hidden;
+            padding: 20px;
         }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
+        
+        .poem-container {
+            width: 100%;
+            max-width: 1200px;
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 10;
         }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
+        
+        .line-container {
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 30px;
         }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
+        
+        .line {
+            font-size: 5.5rem;
+            line-height: 1.4;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .char {
+            display: inline-block;
+            margin: 0 15px;
+            opacity: 0;
+            font-weight: bold;
+            position: relative;
+            text-shadow: 0 0 20px currentColor;
+            transform-origin: center;
+        }
+        
+        /* 多彩文字颜色 */
+        .char.color1 { color: #ff5e00; }
+        .char.color2 { color: #ffbb00; }
+        .char.color3 { color: #00ff88; }
+        .char.color4 { color: #00ccff; }
+        .char.color5 { color: #aa00ff; }
+        .char.color6 { color: #ff0080; }
+        .char.color7 { color: #00ffcc; }
+        
+        /* 飘渺飞入动画 */
+        @keyframes flyIn {
+            0% {
+                opacity: 0;
+                transform: 
+                    translateY(100px) 
+                    translateX(calc(-100px + var(--random-x, 0px))) 
+                    rotate(calc(-45deg + var(--random-rot, 0deg))) 
+                    scale(0.3);
+                filter: blur(20px) brightness(1.5);
+                text-shadow: 0 0 40px currentColor;
             }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
+            20% {
+                opacity: 0.8;
+                transform: 
+                    translateY(-20px) 
+                    translateX(calc(20px + var(--random-x, 0px))) 
+                    rotate(calc(10deg + var(--random-rot, 0deg))) 
+                    scale(1.2);
+                filter: blur(5px) brightness(1.2);
+                text-shadow: 0 0 30px currentColor;
             }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
+            40% {
+                opacity: 1;
+                transform: 
+                    translateY(10px) 
+                    translateX(calc(-10px + var(--random-x, 0px))) 
+                    rotate(calc(-5deg + var(--random-rot, 0deg))) 
+                    scale(0.95);
+                filter: blur(0) brightness(1);
+                text-shadow: 0 0 20px currentColor;
             }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
+            60% {
+                opacity: 1;
+                transform: 
+                    translateY(0) 
+                    translateX(calc(0px + var(--random-x, 0px))) 
+                    rotate(calc(0deg + var(--random-rot, 0deg))) 
+                    scale(1.05);
+                filter: blur(0) brightness(1);
+                text-shadow: 0 0 15px currentColor;
+            }
+            80% {
+                opacity: 1;
+                transform: 
+                    translateY(0) 
+                    translateX(calc(0px + var(--random-x, 0px))) 
+                    rotate(calc(0deg + var(--random-rot, 0deg))) 
+                    scale(1);
+                filter: blur(0) brightness(1);
+                text-shadow: 0 0 10px currentColor;
+            }
+            100% {
+                opacity: 1;
+                transform: 
+                    translateY(0) 
+                    translateX(0) 
+                    rotate(0) 
+                    scale(1);
+                filter: blur(0) brightness(1);
+                text-shadow: 0 0 10px currentColor;
             }
         }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+        
+        /* 雾化消失动画 */
+        @keyframes fogOut {
+            0% {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+                filter: blur(0) brightness(1);
+                text-shadow: 0 0 10px currentColor;
             }
-            
-            .hero p {
-                font-size: 1.1rem;
+            20% {
+                opacity: 0.9;
+                transform: scale(1.05) rotate(calc(2deg * var(--random-dir, 1)));
+                filter: blur(2px) brightness(1.1);
+                text-shadow: 0 0 20px currentColor;
             }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            40% {
+                opacity: 0.7;
+                transform: scale(1.1) rotate(calc(4deg * var(--random-dir, 1)));
+                filter: blur(5px) brightness(1.3);
+                text-shadow: 0 0 30px currentColor;
             }
-            
-            nav ul.active {
-                display: flex;
+            60% {
+                opacity: 0.4;
+                transform: scale(1.3) rotate(calc(6deg * var(--random-dir, 1)));
+                filter: blur(15px) brightness(1.7);
+                text-shadow: 0 0 50px currentColor;
             }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
+            80% {
+                opacity: 0.2;
+                transform: scale(1.6) rotate(calc(8deg * var(--random-dir, 1)));
+                filter: blur(25px) brightness(2.2);
+                text-shadow: 0 0 70px currentColor;
             }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
+            100% {
+                opacity: 0;
+                transform: scale(2) rotate(calc(10deg * var(--random-dir, 1)));
+                filter: blur(40px) brightness(3);
+                text-shadow: 0 0 100px rgba(255, 255, 255, 0.1);
             }
         }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
+        
+        /* 背景装饰 */
+        .bg-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.3;
+        }
+        
+        .bg-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 94, 0, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(0, 204, 255, 0.1) 0%, transparent 50%);
+            animation: bgPulse 20s infinite alternate ease-in-out;
+        }
+        
+        @keyframes bgPulse {
+            0% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0.4;
+                transform: scale(1.1);
+            }
+        }
+        
+        /* 诗词标题 */
+        .title {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            z-index: 5;
+            letter-spacing: 10px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .line {
+                font-size: 4.5rem;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .line {
+                font-size: 3.5rem;
+            }
+            .char {
+                margin: 0 10px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .line {
+                font-size: 2.8rem;
+            }
+            .char {
+                margin: 0 8px;
+            }
+            .title {
+                font-size: 2rem;
+                letter-spacing: 5px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+    <div class="bg-effect"></div>
+    <div class="title">侠客行 · 李白</div>
+    
+    <div class="poem-container">
+        <div class="line-container">
+            <div class="line" id="current-line"></div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
+        // 李白《侠客行》全文
+        const poemLines = [
+            "赵客缦胡缨，吴钩霜雪明。",
+            "银鞍照白马，飒沓如流星。",
+            "十步杀一人，千里不留行。",
+            "事了拂衣去，深藏身与名。",
+            "闲过信陵饮，脱剑膝前横。",
+            "将炙啖朱亥，持觞劝侯嬴。",
+            "三杯吐然诺，五岳倒为轻。",
+            "眼花耳热后，意气素霓生。",
+            "救赵挥金槌，邯郸先震惊。",
+            "千秋二壮士，烜赫大梁城。",
+            "纵死侠骨香，不惭世上英。",
+            "谁能书阁下，白首太玄经。"
+        ];
+        
+        // 获取DOM元素
+        const currentLineElement = document.getElementById('current-line');
+        
+        // 动画参数
+        const FLY_IN_DURATION = 1000; // 飞入动画持续时间(ms)
+        const DISPLAY_DURATION = 3000; // 显示持续时间(ms)
+        const FOG_OUT_DURATION = 1500; // 雾化消失持续时间(ms)
+        const LINE_GAP_DURATION = 800; // 行与行之间的间隔(ms)
+        
+        let currentLineIndex = 0;
+        let animationActive = true;
+        
+        // 渲染当前行
+        function renderCurrentLine() {
+            // 清除当前行内容
+            currentLineElement.innerHTML = '';
+            currentLineElement.style.opacity = '1';
             
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
+            const line = poemLines[currentLineIndex];
+            const chars = line.split('');
+            
+            // 为每个字符创建元素并添加随机参数
+            chars.forEach((char, index) => {
+                const charElement = document.createElement('span');
+                charElement.className = `char color${(index % 7) + 1}`;
+                charElement.textContent = char;
                 
-                const inc = target / speed;
+                // 添加随机参数，使动画更潇洒
+                const randomX = Math.random() * 100 - 50; // -50px 到 50px
+                const randomRot = Math.random() * 20 - 10; // -10度 到 10度
+                const randomDir = Math.random() > 0.5 ? 1 : -1; // 随机方向
                 
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
+                charElement.style.setProperty('--random-x', `${randomX}px`);
+                charElement.style.setProperty('--random-rot', `${randomRot}deg`);
+                charElement.style.setProperty('--random-dir', randomDir);
+                
+                currentLineElement.appendChild(charElement);
             });
+            
+            // 执行动画序列
+            animateLine();
         }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+        
+        // 执行当前行动画
+        function animateLine() {
+            const chars = currentLineElement.querySelectorAll('.char');
+            const totalChars = chars.length;
+            
+            // 第一步：字符飞入
+            chars.forEach((char, index) => {
+                // 设置每个字符的动画延迟
+                const delay = index * 80; // 每个字符间隔80ms
                 
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
+                setTimeout(() => {
+                    char.style.animation = `flyIn ${FLY_IN_DURATION}ms ease-out forwards`;
+                }, delay);
             });
+            
+            // 第二步：所有字符显示一段时间
+            const flyInCompleteTime = totalChars * 80 + FLY_IN_DURATION;
+            
+            setTimeout(() => {
+                // 第三步：字符雾化消失
+                chars.forEach((char, index) => {
+                    // 反向顺序消失，从最后一个字符开始
+                    const reverseIndex = totalChars - 1 - index;
+                    const delay = reverseIndex * 60; // 每个字符间隔60ms
+                    
+                    setTimeout(() => {
+                        char.style.animation = `fogOut ${FOG_OUT_DURATION}ms ease-in forwards`;
+                    }, delay);
+                });
+                
+                // 第四步：切换到下一行
+                const fogOutCompleteTime = totalChars * 60 + FOG_OUT_DURATION;
+                
+                setTimeout(() => {
+                    // 淡出当前行
+                    currentLineElement.style.opacity = '0';
+                    
+                    // 切换到下一行
+                    setTimeout(() => {
+                        currentLineIndex = (currentLineIndex + 1) % poemLines.length;
+                        
+                        // 重新开始动画循环
+                        if (animationActive) {
+                            setTimeout(renderCurrentLine, LINE_GAP_DURATION);
+                        }
+                    }, 300);
+                    
+                }, fogOutCompleteTime);
+                
+            }, flyInCompleteTime + DISPLAY_DURATION);
+        }
+        
+        // 开始动画循环
+        function startAnimationLoop() {
+            animationActive = true;
+            renderCurrentLine();
+        }
+        
+        // 页面加载后开始动画
+        window.addEventListener('load', () => {
+            // 延迟1秒后开始，让字体加载完成
+            setTimeout(startAnimationLoop, 1000);
+        });
+        
+        // 点击页面可以暂停/继续动画
+        document.addEventListener('click', () => {
+            animationActive = !animationActive;
+            
+            if (animationActive) {
+                // 如果之前是暂停状态，重新开始
+                if (currentLineElement.innerHTML === '') {
+                    renderCurrentLine();
+                }
+            }
+        });
+        
+        // 添加键盘控制（可选，按空格键暂停/继续）
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                animationActive = !animationActive;
+                
+                if (animationActive && currentLineElement.innerHTML === '') {
+                    renderCurrentLine();
+                }
+            }
         });
     </script>
 </body>
-
 </html>
